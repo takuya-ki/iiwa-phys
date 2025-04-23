@@ -86,6 +86,13 @@
     ```  
     <img src=dataset/images/iiwa_bullet_rrt.gif width=320>  
 
+#### MuJoCo
+- Show a LBR iiwa robot
+    ```bash
+    cd /scripts && conda activate mujoco && python mujoco_vis.py
+    ```  
+    <img src=dataset/images/iiwa_mujoco_vis.png width=320>
+
 ## Contributors
 
 We always welcome collaborators!
