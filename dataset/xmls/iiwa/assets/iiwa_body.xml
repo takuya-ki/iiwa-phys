@@ -1,0 +1,131 @@
+<mujocoinclude>
+    <option cone="elliptic" impratio="10"/>
+
+    <default>
+        <default class="2f85">
+            <mesh scale="0.001 0.001 0.001"/>
+        <general biastype="affine"/>
+
+        <joint axis="1 0 0"/>
+        <default class="driver">
+            <joint range="0 0.8" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+        </default>
+        <default class="follower">
+            <joint range="-0.872664 0.872664" armature="0.001" pos="0 -0.018 0.0065" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+        </default>
+        <default class="spring_link">
+            <joint range="-0.29670597283 0.8" armature="0.001" stiffness="0.05" springref="2.62" damping="0.00125"/>
+        </default>
+        <default class="coupler">
+            <joint range="-1.57 0" armature="0.001" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+        </default>
+
+        <default class="visual">
+            <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+        </default>
+        <default class="collision">
+            <geom type="mesh" group="3"/>
+            <default class="pad_box1">
+                <geom mass="0" type="box" pos="0 -0.0026 0.028125" size="0.011 0.004 0.009375" friction="0.7"
+                    solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.55 0.55 0.55 1"/>
+            </default>
+            <default class="pad_box2">
+                <geom mass="0" type="box" pos="0 -0.0026 0.009375" size="0.011 0.004 0.009375" friction="0.6"
+                    solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.45 0.45 0.45 1"/>
+            </default>
+        </default>
+        </default>
+    </default>
+
+    <worldbody>
+        <body name="iiwa_world" pos="0 0 0">
+            <!-- robot view -->
+            <camera mode="fixed" name="iiwa_robotview" pos="1.0 0 0.4" quat="0.653 0.271 0.271 0.653"/>
+            <inertial diaginertia="0 0 0" mass="0" pos="0 0 0"/>
+            <body name="iiwa_link_0" pos="0 0 0">
+                <inertial pos="0 0 0" mass="5" fullinertia="0.05 0.06 0.03 0 0 0" />
+                <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_0_vis" name="iiwa_link_0_visual" rgba="0.4 0.4 0.4 1.0" />
+                <geom type="mesh" group="0" mesh="iiwa_link_0" name="iiwa_link_0_collision"/>
+                <body name="iiwa_link_1" pos="0 0 0.1575">
+                    <inertial pos="0 -0.03 0.12" mass="4" fullinertia="0.1 0.09 0.02 0 0 0" />
+                    <joint name="iiwa_joint_1" pos="0 0 0" axis="0 0 1" limited="true" range="-2.9670597283903604 2.9670597283903604" damping="0.5"/>
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_1_vis" name="iiwa_link_1_visual" rgba="1.0 0.4235294117647059 0.0392156862745098 1.0" />
+                    <geom type="mesh" group="0" mesh="iiwa_link_1" name="iiwa_link_1_collision"/>
+                    <body name="iiwa_link_2" pos="0 0 0.2025" quat="0 0 0.7071068 0.7071068">
+                        <inertial pos="0.0003 0.059 0.042" mass="4" fullinertia="0.05 0.018 0.044 0 0 0" />
+                        <joint name="iiwa_joint_2" pos="0 0 0" axis="0 0 1" limited="true" range="-2.0943951023931953 2.0943951023931953" damping="0.5"/>
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_2_vis" name="iiwa_link_2_visual" rgba="1.0 0.4235294117647059 0.0392156862745098 1.0" />
+                        <geom type="mesh" group="0" mesh="iiwa_link_2" name="iiwa_link_2_collision"/>
+                        <body name="iiwa_link_3" pos="0 0.2045 0" quat="0 0 0.7071068 0.7071068">
+                            <inertial pos="0 0.03 0.13" mass="3" fullinertia="0.08 0.075 0.01 0 0 0" />
+                            <joint name="iiwa_joint_3" pos="0 0 0" axis="0 0 1" limited="true" range="-2.9670597283903604 2.9670597283903604" damping="0.5"/>
+                            <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_3_vis" name="iiwa_link_3_visual" rgba="1.0 0.4235294117647059 0.0392156862745098 1.0" />
+                            <geom type="mesh" group="0" mesh="iiwa_link_3" name="iiwa_link_3_collision"/>
+                            <body name="iiwa_link_4" pos="0 0 0.2155" quat="0.7071068 0.7071068 0 0">
+                                <inertial pos="0 0.067 0.034" mass="2.7" fullinertia="0.03 0.01 0.029 0 0 0" />
+                                <joint name="iiwa_joint_4" pos="0 0 0" axis="0 0 1" limited="true" range="-2.0943951023931953 2.0943951023931953" damping="0.5"/>
+                                <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_4_vis" name="iiwa_link_4_visual" rgba="1.0 0.4235294117647059 0.0392156862745098 1.0" />
+                                <geom type="mesh" group="0" mesh="iiwa_link_4" name="iiwa_link_4_collision"/>
+                                <body name="iiwa_link_5" pos="0 0.1845 0" quat="0 0 0.7071068 0.7071068">
+                                    <inertial pos="0.0001 0.021 0.076" mass="1.7" fullinertia="0.02 0.018 0.005 0 0 0" />
+                                    <joint name="iiwa_joint_5" pos="0 0 0" axis="0 0 1" limited="true" range="-2.9670597283903604 2.9670597283903604" damping="0.5"/>
+                                    <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_5_vis" name="iiwa_link_5_visual" rgba="1.0 0.4235294117647059 0.0392156862745098 1.0" />
+                                    <geom type="mesh" group="0" mesh="iiwa_link_5" name="iiwa_link_5_collision"/>
+                                    <body name="iiwa_link_6" pos="0 0 0.2155" quat="0.7071068 0.7071068 0 0">
+                                        <inertial pos="0 0.0006 0.0004" mass="1.8" fullinertia="0.005 0.0036 0.0047 0 0 0" />
+                                        <joint name="iiwa_joint_6" pos="0 0 0" axis="0 0 1" limited="true" range="-2.0943951023931953 2.0943951023931953" damping="0.5"/>
+                                        <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_6_vis" name="iiwa_link_6_visual" rgba="1.0 0.4235294117647059 0.0392156862745098 1.0" />
+                                        <geom type="mesh" group="0" mesh="iiwa_link_6" name="iiwa_link_6_collision"/>
+                                        <body name="iiwa_link_7" pos="0 0.081 0" quat="0 0 0.7071068 0.7071068">
+                                            <inertial pos="0 0 0.02" mass="0.3" fullinertia="0.001 0.001 0.001 0 0 0" />
+                                            <joint name="iiwa_joint_7" pos="0 0 0" axis="0 0 1" limited="true" range="-3.0543261909900763 3.0543261909900763" damping="0.5"/>
+                                            <geom type="mesh" contype="0" conaffinity="0" group="1" mesh="iiwa_link_7_vis" name="iiwa_link_7_visual" rgba="1.0 0.4235294117647059 0.0392156862745098 1.0" />
+                                            <geom type="mesh" group="0" mesh="iiwa_link_7" name="iiwa_link_7_collision"/>
+                                            <body name="hand" pos="0 0 0.045" quat="0.7071068 0 0 0.7071068">
+                                                <inertial pos="0 0 0" mass="0.5" fullinertia="0.01 0.01 0.01 0.0 0.0 0.0" />
+                                                <!-- This camera points out from the eef. -->
+                                                <camera mode="fixed" name="iiwa_eye_in_hand" pos="0.05 0 0" fovy="75"/>
+                                                <!-- to add gripper -->
+                                                <include file="assets/iiwa_gripper.xml"/>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <contact>
+        <exclude body1="base" body2="left_driver"/>
+        <exclude body1="base" body2="right_driver"/>
+        <exclude body1="base" body2="left_spring_link"/>
+        <exclude body1="base" body2="right_spring_link"/>
+        <exclude body1="right_coupler" body2="right_follower"/>
+        <exclude body1="left_coupler" body2="left_follower"/>
+    </contact>
+
+    <!--
+        This adds stability to the model by having a tendon that distributes the forces between both
+        joints, such that the equality constraint doesn't have to do that much work in order to equalize
+        both joints. Since both joints share the same sign, we split the force between both equally by
+        setting coef=0.5
+    -->
+    <tendon>
+        <fixed name="split">
+        <joint joint="right_driver_joint" coef="0.5"/>
+        <joint joint="left_driver_joint" coef="0.5"/>
+        </fixed>
+    </tendon>
+
+    <equality>
+        <connect anchor="0 0 0" body1="right_follower" body2="right_coupler" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+        <connect anchor="0 0 0" body1="left_follower" body2="left_coupler" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+        <joint joint1="right_driver_joint" joint2="left_driver_joint" polycoef="0 1 0 0 0" solimp="0.95 0.99 0.001"
+        solref="0.005 1"/>
+    </equality>
+
+</mujocoinclude>

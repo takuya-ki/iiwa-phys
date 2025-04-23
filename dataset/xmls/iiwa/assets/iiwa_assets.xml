@@ -1,0 +1,36 @@
+<mujocoinclude>
+    <asset>
+        <mesh name="iiwa_link_0" file="/dataset/meshes/iiwa14/collision/link_0.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_1" file="/dataset/meshes/iiwa14/collision/link_1.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_2" file="/dataset/meshes/iiwa14/collision/link_2.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_3" file="/dataset/meshes/iiwa14/collision/link_3.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_4" file="/dataset/meshes/iiwa14/collision/link_4.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_5" file="/dataset/meshes/iiwa14/collision/link_5.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_6" file="/dataset/meshes/iiwa14/collision/link_6.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_7" file="/dataset/meshes/iiwa14/collision/link_7.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_0_vis" file="/dataset/meshes/iiwa14/visual/link_0.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_1_vis" file="/dataset/meshes/iiwa14/visual/link_1.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_2_vis" file="/dataset/meshes/iiwa14/visual/link_2.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_3_vis" file="/dataset/meshes/iiwa14/visual/link_3.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_4_vis" file="/dataset/meshes/iiwa14/visual/link_4.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_5_vis" file="/dataset/meshes/iiwa14/visual/link_5.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_6_vis" file="/dataset/meshes/iiwa14/visual/link_6.stl" scale="1 1 1" />
+        <mesh name="iiwa_link_7_vis" file="/dataset/meshes/iiwa14/visual/link_7.stl" scale="1 1 1" />
+    </asset>
+    
+    <asset>
+        <material name="metal" rgba="0.58 0.58 0.58 1"/>
+        <material name="silicone" rgba="0.1882 0.1882 0.1882 1"/>
+        <material name="gray" rgba="0.4627 0.4627 0.4627 1"/>
+        <material name="black" rgba="0.149 0.149 0.149 1"/>
+
+        <mesh class="2f85" file="/dataset/meshes/rq85/base_mount.stl"/>
+        <mesh class="2f85" file="/dataset/meshes/rq85/base.stl"/>
+        <mesh class="2f85" file="/dataset/meshes/rq85/driver.stl"/>
+        <mesh class="2f85" file="/dataset/meshes/rq85/coupler.stl"/>
+        <mesh class="2f85" file="/dataset/meshes/rq85/follower.stl"/>
+        <mesh class="2f85" file="/dataset/meshes/rq85/pad.stl"/>
+        <mesh class="2f85" file="/dataset/meshes/rq85/silicone_pad.stl"/>
+        <mesh class="2f85" file="/dataset/meshes/rq85/spring_link.stl"/>
+    </asset>
+</mujocoinclude>
