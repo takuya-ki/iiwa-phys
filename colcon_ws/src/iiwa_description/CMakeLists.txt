@@ -25,4 +25,12 @@ install(DIRECTORY rviz/
     DESTINATION share/${PROJECT_NAME}/rviz
 )
 
+install(DIRECTORY ros2_control/
+    DESTINATION share/${PROJECT_NAME}/ros2_control
+)
+
+install(DIRECTORY gazebo/
+    DESTINATION share/${PROJECT_NAME}/gazebo
+)
+
 ament_package()

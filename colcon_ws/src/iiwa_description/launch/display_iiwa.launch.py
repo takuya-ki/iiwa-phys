@@ -7,7 +7,7 @@ import launch_ros
 def generate_launch_description():
     pkg_path = launch_ros.substitutions.FindPackageShare(
         package='iiwa_description').find('iiwa_description')
-    xacro_path = os.path.join(pkg_path, 'urdf/iiwa14_rq140.urdf.xacro')
+    xacro_path = os.path.join(pkg_path, 'urdf/iiwa14_rq140.xacro')
     robot_xacro = xacro.process_file(xacro_path)
     params = {'robot_description': robot_xacro.toxml()}
     

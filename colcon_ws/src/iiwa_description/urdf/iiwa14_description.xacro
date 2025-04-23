@@ -5,15 +5,23 @@
     <xacro:macro name="iiwa14"
         params="robot_name:=^|lbr mode:=^|mock">
 
+        <xacro:arg name="system_config_path" default="$(find iiwa_description)/ros2_control/lbr_system_config.yaml" />
+
         <!-- joint limits via yaml -->
         <xacro:property name="joint_limits_path"
-            value="$(find iiwa_description)/urdf/iiwa14/joint_limits.yaml" />
+            value="$(find iiwa_description)/urdf/joint_limits.yaml" />
         <xacro:property name="joint_limits" value="${xacro.load_yaml(joint_limits_path)}" />
 
         <!-- constants -->
         <xacro:property name="PI" value="3.1415926535897931" />
         <xacro:property name="joint_damping" value="10.0" />
         <xacro:property name="joint_friction" value="0.1" />
+
+        <xacro:iiwa_gripper_system_interface
+            robot_name="${robot_name}"
+            mode="${mode}"
+            joint_limits="${joint_limits}"
+            system_config_path="$(arg system_config_path)" />
 
         <link name="${robot_name}_link_0">
             <inertial>
@@ -306,81 +314,14 @@
         <link name="${robot_name}_link_ee">
         </link>
 
-    <link name="tool_mount">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 ${-pi/2} ${pi/2}"/>
-            <geometry>
-                <mesh filename="package://iiwa_description/meshes/envs/visual/iiwa_tool_mount.stl"/>
-            </geometry>
-            <material name="">
-                <color rgba="0.8 0.8 0.8 1"/>
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0.005" rpy="0 0 0"/>
-            <geometry>
-                <cylinder length="0.006" radius="0.038"/>
-            </geometry>
-        </collision>
-    </link>
-    <joint name="eef_base_joint" type="fixed">
-        <origin xyz="0 0 0.0095" rpy="0 0 0"/>
-        <parent link="tool_mount"/>
-        <child link="eef_base"/>
-    </joint>
-    <link name="eef_base">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <mesh filename="package://iiwa_description/meshes/envs/visual/hande_base.stl"/>
-            </geometry>
-            <material name="">
-                <color rgba="0.8 0.8 0.8 1"/>
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0 0 0.0095" rpy="0 0 0"/>
-            <geometry>
-                <cylinder length="0.020" radius="0.038"/>
-            </geometry>
-        </collision>
-    </link>
-    <joint name="eef_joint" type="fixed">
-        <origin xyz="0 0 0.0015" rpy="0 0 3.14"/>
-        <parent link="eef_base"/>
-        <child link="eef"/>
-    </joint>
-    <link name="eef">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <mesh filename="package://iiwa_description/meshes/envs/visual/hande.stl"/>
-            </geometry>
-            <material name="">
-                <color rgba="0.8 0.8 0.8 1"/>
-            </material>
-        </visual>
-        <collision>
-            <geometry>
-                <mesh filename="package://iiwa_description/meshes/envs/collision/hande.stl"/>
-            </geometry>
-        </collision>
-    </link>  
+        <!--  The TCP frame is here defined -->
+        <link name="tool_link_ee"/>
 
-    <joint name="tool_joint" type="fixed">
-        <parent link="${robot_name}_link_ee"/>
-        <child link="tool_mount"/>
-        <origin xyz="0 0 0.001" rpy="0 0 ${PI/2}"/>
-    </joint>
-
-    <joint name="tool_tip_joint" type="fixed">
-        <parent link="${robot_name}_link_ee"/>
-        <child link="tool_link_ee"/>
-        <origin xyz="0 0 0.25" rpy="${PI/2} -${PI/2} 0"/>
-    </joint>
-
-    <!--  The TCP frame is here defined -->
-    <link name="tool_link_ee"/>
+        <joint name="tool_tip_joint" type="fixed">
+            <parent link="${robot_name}_link_ee"/>
+            <child link="tool_link_ee"/>
+            <origin xyz="0 0 0.25" rpy="${PI/2} -${PI/2} 0"/>
+        </joint>
 
     </xacro:macro>
 </robot>
