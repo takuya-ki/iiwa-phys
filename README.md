@@ -73,6 +73,19 @@
       - [Gazebo Ignition on ROS2](#gazebo-ignition-on-ros2)
 3. Run a command in the docker container
 
+#### Pybullet
+- Show a LBR iiwa robot
+    ```bash
+    cd /scripts && conda activate pybullet && python pybullet_vis.py
+    ```  
+    <img src=dataset/images/iiwa_bullet_vis.png width=320>  
+
+- Example motion planning for a LBR iiwa robot
+    ```bash
+    cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg '[naiveRRT, RRT, BiRRT, RRTStar, BiRRTStar]'
+    ```  
+    <img src=dataset/images/iiwa_bullet_rrt.gif width=320>  
+
 ## Contributors
 
 We always welcome collaborators!
