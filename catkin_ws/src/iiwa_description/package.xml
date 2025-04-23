@@ -1,0 +1,13 @@
+<package format="2">
+    <name>iiwa_description</name>
+    <version>0.0.0</version>
+    <description>
+        iiwa_description package
+    </description>
+    <author email="taku8926@gmail.com">Takuya Kiyokawa</author>
+    <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
+    <license>3-Clause BSD</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    <depend>xacro</depend>
+</package>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+    <name>iiwa_description</name>
+    <version>0.0.0</version>
+    <description>
+        LBR iiwa description package
+    </description>
+    <author email="taku8926@gmail.com">Takuya Kiyokawa</author>
+    <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
+    <license>3-Clause BSD</license>
+
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <depend>rclcpp</depend>
+    <depend>urdf</depend>
+    <depend>xacro</depend>
+    <depend>rviz2</depend>
+    <depend>robot_state_publisher</depend>
+
+    <test_depend>ament_lint_auto</test_depend>
+    <test_depend>ament_lint_common</test_depend>
+
+    <export>
+        <build_type>ament_cmake</build_type>
+    </export>
+</package>

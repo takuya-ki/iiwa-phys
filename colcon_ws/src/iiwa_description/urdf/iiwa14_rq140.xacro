@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+
+<!-- top level -->
+<robot name="iiwa_gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- include the lbr iiwa macro -->
+    <xacro:include filename="$(find iiwa_description)/urdf/iiwa14/iiwa14_description.xacro" />
+    <xacro:include filename="$(find iiwa_description)/urdf/robotiq_arg2f_140_model_macro.xacro" />
+    <xacro:include filename="$(find iiwa_description)/gazebo/iiwa_gripper_gazebo.xacro" />
+    <xacro:include filename="$(find iiwa_description)/ros2_control/iiwa_gripper_system_interface.xacro" />
+
+    <xacro:arg name="robot_name" default="lbr" />
+    <xacro:arg name="mode" default="true" />
+    <xacro:arg name="system_config_path" default="$(find iiwa_description)/ros2_control/lbr_system_config.yaml" />
+
+    <!-- macros for gazebo / mock / hardware -->
+    <xacro:lbr_gazebo robot_name="${robot_name}" />
+    <xacro:iiwa_gripper_system_interface
+        robot_name="${robot_name}"
+        mode="${mode}"
+        joint_limits="${joint_limits}"
+        system_config_path="${system_config_path}" />
+
+	<link name="world" />
+	<link name="base_link"/>
+	<joint name="fixed_link_robot_base" type="fixed">
+		<parent link="world" />
+		<child link="base_link" />
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+	</joint>
+
+    <link name="workspace_mount1">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.3 0.3 0.03"/>
+            </geometry>
+            <material name="gray">
+                <color rgba="0.7 0.7 0.7 0.2"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.3 0.3 0.03"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="workspace_mount1_joint" type="fixed">
+        <origin xyz="0.1 0.5 0.85" rpy="0 0 3.14"/>
+        <parent link="base_link"/>
+        <child link="workspace_mount1"/>
+    </joint>
+
+    <joint name="$(arg robot_name)_joint" type="fixed">
+        <origin xyz="0 0 0.016" rpy="0 0 2.36"/>
+        <parent link="workspace_mount1" />
+        <child link="$(arg robot_name)_link_0" />
+    </joint>
+
+    <!-- iiwa -->
+    <xacro:iiwa14
+        robot_name="$(arg robot_name)"
+        mode="$(arg mode)" />
+
+
+	<xacro:robotiq_arg2f_140 prefix="" />
+	<joint name="iiwa_ee_link_gripper_base" type="fixed">
+		<parent link="tool_link_ee" />
+		<child link="robotiq_arg2f_base_link" />
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${pi/2}" />
+	</joint>
+	<link name="tool" />
+	<joint name="eef_tip" type="fixed">
+		<parent link="robotiq_arg2f_base_link" />
+		<child link="tool" />
+		<origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0" />
+	</joint>
+
+	<!-- To remove errors -->
+	<link name="dummy_left_inner_finger_joint_mimic"/>
+	<joint name="left_inner_finger_joint_mimic" type="fixed">
+		<parent link="world" />
+		<child link="dummy_left_inner_finger_joint_mimic" />
+	</joint>
+	<link name="dummy_left_inner_knuckle_joint_mimic"/>
+	<joint name="left_inner_knuckle_joint_mimic" type="fixed">
+		<parent link="world" />
+		<child link="dummy_left_inner_knuckle_joint_mimic" />
+	</joint>
+	<link name="dummy_right_inner_finger_joint_mimic"/>
+	<joint name="right_inner_finger_joint_mimic" type="fixed">
+		<parent link="world" />
+		<child link="dummy_right_inner_finger_joint_mimic" />
+	</joint>
+	<link name="dummy_right_inner_knuckle_joint_mimic"/>
+	<joint name="right_inner_knuckle_joint_mimic" type="fixed">
+		<parent link="world" />
+		<child link="dummy_right_inner_knuckle_joint_mimic" />
+	</joint>
+	<link name="dummy_right_outer_knuckle_joint_mimic"/>
+	<joint name="right_outer_knuckle_joint_mimic" type="fixed">
+		<parent link="world" />
+		<child link="dummy_right_outer_knuckle_joint_mimic" />
+	</joint>
+
+</robot>
