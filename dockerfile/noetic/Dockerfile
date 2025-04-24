@@ -115,14 +115,16 @@ RUN . ~/.bashrc && conda activate mujoco && pip3 install mujoco mujoco-python-vi
 WORKDIR /catkin_ws/src/
 RUN echo "conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_description display_iiwa.launch end_effector:=rq140" >> ~/.bash_history
 RUN echo "conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo.launch end_effector:=rq140 use_gui:=true" >> ~/.bash_history
-RUN echo "conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo_gazebo.launch end_effector:=rq140" >> ~/.bash_history
 RUN echo "conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_example_motion iiwa_example.launch" >> ~/.bash_history
+RUN echo "conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo_gazebo.launch end_effector:=rq140" >> ~/.bash_history
+
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_vis.py" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg naiveRRT" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg RRT" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg BiRRT" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg RRTStar" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg BiRRTStar" >> ~/.bash_history
+
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs 1 --eef rqhe" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs 1 --eef rq140" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_pick.py --num_envs 1 --eef rqhe" >> ~/.bash_history

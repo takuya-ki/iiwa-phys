@@ -73,6 +73,31 @@
       - [Gazebo Ignition on ROS2](#gazebo-ignition-on-ros2)
 3. Run a command in the docker container
 
+#### Gazebo Classic on ROS1
+- Show a LBR iiwa robot using rviz
+    ```bash
+    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_description display_iiwa.launch end_effector:='[rq140]'
+    ```  
+    <img src=dataset/images/iiwa_rviz.png width=320>  
+
+- Demonstrate a MoveIt GUI to try motion generations for a LBR iiwa robot
+    ```bash
+    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo.launch end_effector:='[rq140]' '[use_gui:=true]'
+    ```  
+    <img src=dataset/images/iiwa_moveit.gif width=320>  
+
+- Execute and visualize an example motion for a LBR iiwa robot with MoveIt
+    ```bash
+    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_example_motion iiwa_example.launch
+    ```  
+    <img src=dataset/images/iiwa_moveit_example.gif width=320>  
+
+- Demonstrate an example motion for a LBR iiwa robot on Gazebo
+    ```bash
+    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo_gazebo.launch enf_effector:='[rq140]'
+    ```  
+    <img src=dataset/images/iiwa_gazebo.gif width=320>  
+
 #### Pybullet
 - Show a LBR iiwa robot
     ```bash

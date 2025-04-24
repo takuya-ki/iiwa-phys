@@ -67,6 +67,34 @@
       <mu2>0.2</mu2>
     </gazebo>
 
+    <gazebo reference="iiwa_joint_1">
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="iiwa_joint_2">
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="iiwa_joint_3">
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="iiwa_joint_4">
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="iiwa_joint_5">
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="iiwa_joint_6">
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </gazebo>
+    <gazebo reference="iiwa_joint_7">
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+            <parameters>$(find iiwa_moveit_config)/config/gazebo_controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+
   </xacro:macro>
 
 </robot>

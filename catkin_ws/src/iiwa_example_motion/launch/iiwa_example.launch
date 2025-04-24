@@ -1,0 +1,10 @@
+<launch>
+    <arg name="end_effector" default='rq140'/>
+
+    <include file="$(find iiwa_moveit_config)/launch/demo.launch" >
+        <arg name="end_effector" value="$(arg end_effector)" />
+    </include>
+
+    <rosparam param="end_effector" subst_value="True">$(arg end_effector)</rosparam>
+    <node name="iiwa_example_motion" pkg="iiwa_example_motion" type="iiwa_example.py" respawn="true" output="screen" />
+</launch>

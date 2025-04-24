@@ -1,0 +1,29 @@
+# Publish joint_states
+joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 500
+
+gazebo_ros_control/pid_gains:
+    iiwa_joint_1: {p: 10000.0, i: 1.0, d: 1.0}
+    iiwa_joint_2: {p: 10000.0, i: 1.0, d: 1.0}
+    iiwa_joint_3: {p: 10000.0, i: 1.0, d: 1.0}
+    iiwa_joint_4: {p: 10000.0, i: 1.0, d: 1.0}
+    iiwa_joint_5: {p: 10000.0, i: 1.0, d: 1.0}
+    iiwa_joint_6: {p: 10000.0, i: 1.0, d: 1.0}
+    iiwa_joint_7: {p: 10000.0, i: 1.0, d: 1.0}
+    finger_joint: {p: 0.1, i: 0.0, d: 0.1}
+
+iiwa:
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 500
+
+    gazebo_ros_control/pid_gains:
+        iiwa_joint_1: {p: 10000.0, i: 1.0, d: 1.0}
+        iiwa_joint_2: {p: 10000.0, i: 1.0, d: 1.0}
+        iiwa_joint_3: {p: 10000.0, i: 1.0, d: 1.0}
+        iiwa_joint_4: {p: 10000.0, i: 1.0, d: 1.0}
+        iiwa_joint_5: {p: 10000.0, i: 1.0, d: 1.0}
+        iiwa_joint_6: {p: 10000.0, i: 1.0, d: 1.0}
+        iiwa_joint_7: {p: 10000.0, i: 1.0, d: 1.0}
+        finger_joint: {p: 0.1, i: 0.0, d: 0.1}

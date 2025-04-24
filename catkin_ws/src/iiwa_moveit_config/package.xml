@@ -1,0 +1,25 @@
+<package format="2">
+    <name>iiwa_moveit_config</name>
+    <version>0.0.0</version>
+    <description>
+        Configuration and launch files for using the iiwa with the MoveIt!
+    </description>
+    <author email="taku8926@gmail.com">Takuya Kiyokawa</author>
+    <maintainer email="taku8926@gmail.com">Takuya Kiyokawa</maintainer>
+    <license>3-Clause BSD</license>
+    <url type="website">http://moveit.ros.org/</url>
+    <url type="bugtracker">https://github.com/ros-planning/moveit/issues</url>
+    <url type="repository">https://github.com/ros-planning/moveit</url>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <depend>moveit_ros_move_group</depend>
+    <depend>moveit_fake_controller_manager</depend>
+    <depend>moveit_kinematics</depend>
+    <depend>moveit_planners_ompl</depend>
+    <depend>moveit_ros_visualization</depend>
+    <depend>moveit_setup_assistant</depend>
+    <depend>joint_state_publisher</depend>
+    <depend>robot_state_publisher</depend>
+    <depend>xacro</depend>
+</package>
