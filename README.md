@@ -118,6 +118,12 @@
     ```  
     <img src=dataset/images/iiwa_gym_vis.png width=320>  
 
+- Example motion planning for an LBR iiwa robot
+    ```bash
+    cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --num_envs X  --alg naiveRRT
+    ```  
+    <img src=dataset/images/iiwa_gym_rrt.gif width=320>  
+
 #### MuJoCo
 - Show an LBR iiwa robot
     ```bash
