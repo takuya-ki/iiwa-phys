@@ -3,7 +3,7 @@
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](https://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-- Configuration files, example programs, and docker environment for physics simulations for variable workstation with an LBR iiwa 14 R820 robot
+- Configuration files, example programs, and docker environment for physics simulations with an LBR iiwa 14 R820 robot
 - Note that this is still under development with several hand-crafted parameters
 
 - [iiwa-phys](#iiwa-phys)
@@ -112,7 +112,7 @@
     <img src=dataset/images/iiwa_bullet_rrt.gif width=320>  
 
 #### Isaac Gym
-- Visualize LBR iiwa robots in X variable workstations
+- Visualize LBR iiwa robots in X environments
     ```bash
     cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs X
     ```  
