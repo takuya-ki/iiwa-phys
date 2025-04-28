@@ -125,9 +125,8 @@ RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg RRTStar" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg BiRRTStar" >> ~/.bash_history
 
-RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs 1 --eef rqhe" >> ~/.bash_history
-RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs 1 --eef rq140" >> ~/.bash_history
-RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_pick.py --num_envs 1 --eef rqhe" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs 1" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_pick.py --num_envs 1" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --eef rqhe --alg naiveRRT" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --eef rqhe --alg RRT" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --eef rqhe --alg BiRRT" >> ~/.bash_history

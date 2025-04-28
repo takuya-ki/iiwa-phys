@@ -111,6 +111,13 @@
     ```  
     <img src=dataset/images/iiwa_bullet_rrt.gif width=320>  
 
+#### Isaac Gym
+- Visualize LBR iiwa robots in X variable workstations
+    ```bash
+    cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs X
+    ```  
+    <img src=dataset/images/iiwa_gym_vis.png width=320>  
+
 #### MuJoCo
 - Show an LBR iiwa robot
     ```bash
