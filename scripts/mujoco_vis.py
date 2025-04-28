@@ -2,7 +2,6 @@
 
 import os
 import math
-import argparse
 import mujoco
 import mujoco_viewer
 import numpy as np

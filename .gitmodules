@@ -1,0 +1,3 @@
+[submodule "colcon_ws/src/lbr_fri_ros2_stack"]
+	path = colcon_ws/src/lbr_fri_ros2_stack
+	url = git@github.com:lbr-stack/lbr_fri_ros2_stack.git

@@ -110,6 +110,7 @@ RUN git clone https://github.com/ros-planning/moveit_resources.git -b humble --r
 RUN git clone https://github.com/moveit/moveit2.git -b humble --recursive && \
     cd moveit2 && \
     git reset --hard 7ffdfd3
+COPY ./colcon_ws/src/moveit_configs_utils/launches.py /root/colcon_ws/src/moveit2/moveit_configs_utils/moveit_configs_utils/
 RUN /bin/bash -c "touch /root/colcon_ws/src/moveit2/COLCON_IGNORE"
 RUN /bin/bash -c "touch /root/colcon_ws/src/moveit2/moveit_ros/robot_interaction/COLCON_IGNORE"
 RUN /bin/bash -c "touch /root/colcon_ws/src/moveit2/moveit_ros/hybrid_planning/COLCON_IGNORE"
@@ -148,7 +149,34 @@ RUN /bin/bash -c "source /opt/ros/humble/setup.bash && rm /root/colcon_ws/src/mo
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash && rm /root/colcon_ws/src/moveit2/moveit_ros/hybrid_planning/COLCON_IGNORE && colcon build --executor parallel --parallel-workers $PARALLELWORKERS --symlink-install --mixin release"
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash && rm /root/colcon_ws/src/moveit2/moveit_ros/robot_interaction/COLCON_IGNORE && colcon build --executor parallel --parallel-workers $PARALLELWORKERS --symlink-install --mixin release"
 
+# lbr_fri_ros2_stack
+# https://raw.githubusercontent.com/lbr-stack/lbr_fri_ros2_stack/humble/lbr_fri_ros2_stack/repos-fri-${FRI_CLIENT_VERSION}.yaml
+WORKDIR /root/colcon_ws/src
+RUN pip install pyoptas casadi pynput
+COPY ./yaml/repos-fri-1.15.yaml /tmp/
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash" && \
+    mkdir -p lbr-stack/src && cd lbr-stack && \
+    vcs import src --input /tmp/repos-fri-1.15.yaml && \
+    rosdep install --from-paths src -i -r -y
+WORKDIR /root/colcon_ws
+RUN apt install -y --no-install-recommends ros-humble-kinematics-interface
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && colcon build --executor parallel --parallel-workers $PARALLELWORKERS --symlink-install --mixin release" && \
+    /bin/bash -c "source /root/colcon_ws/install/setup.bash"
+
 # Generates bash commands
 WORKDIR /root/colcon_ws/
-RUN echo "source /opt/ros/humble/setup.bash && source /root/colcon_ws/install/setup.bash && ros2 launch iiwa_description display_iiwa.launch.py" >> ~/.bash_history
-RUN echo "source /opt/ros/humble/setup.bash && source /root/colcon_ws/install/setup.bash && ros2 daemon stop; sleep 1; ros2 daemon start; kill 0 && ros2 launch iiwa_gazebo iiwa_example.launch.py" >> ~/.bash_history
+
+# visualize a model with rviz
+RUN echo "ros2 launch lbr_bringup mock.launch.py model:=iiwa14" >> ~/.bash_history
+RUN echo "ros2 launch lbr_bringup rviz.launch.py rviz_cfg_pkg:=lbr_bringup rviz_cfg:=config/mock.rviz" >> ~/.bash_history
+
+# moveit
+RUN echo "ros2 launch lbr_bringup mock.launch.py model:=iiwa14" >> ~/.bash_history
+RUN echo "ros2 launch lbr_bringup move_group.launch.py mode:=mock rviz:=true model:=iiwa14" >> ~/.bash_history
+
+# gazebo
+RUN echo "ros2 launch lbr_bringup gazebo.launch.py ctrl:=joint_trajectory_controller model:=iiwa14" >> ~/.bash_history
+RUN echo "ros2 run lbr_demos_py joint_trajectory_client --ros-args -r __ns:=/lbr" >> ~/.bash_history
+
+RUN echo "ros2 daemon stop; sleep 1; ros2 daemon start; kill 0" >> ~/.bash_history
+RUN echo "source /opt/ros/humble/setup.bash && source /root/colcon_ws/install/setup.bash" >> ~/.bash_history

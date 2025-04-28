@@ -55,10 +55,9 @@ services:
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
             # fonts
             - /usr/share/fonts/truetype/freefont:/usr/share/fonts/truetype/freefont
-            # source codes
-            - ./colcon_ws/src/iiwa_description:/root/colcon_ws/src/iiwa_description
-            - ./colcon_ws/src/iiwa_gazebo:/root/colcon_ws/src/iiwa_gazebo
-            - ./colcon_ws/src/iiwa_moveit_config:/root/colcon_ws/src/iiwa_moveit_config
+            # shared directories
+            - ./yaml:/yaml
+            - ./colcon_ws/src/lbr_fri_ros2_stack:/root/colcon_ws/src/lbr-stack/src/lbr_fri_ros2_stack
             # dataset
             - ./dataset/:/dataset
         privileged: true

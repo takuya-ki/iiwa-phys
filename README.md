@@ -3,7 +3,7 @@
 [![support level: community](https://img.shields.io/badge/support%20level-community-lightgray.svg)](https://rosindustrial.org/news/2016/10/7/better-supporting-a-growing-ros-industrial-software-platform)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-- Configuration files, example programs, and docker environment for physics simulations for variable workstation with a LBR iiwa 14 R820 robot
+- Configuration files, example programs, and docker environment for physics simulations for variable workstation with an LBR iiwa 14 R820 robot
 - Note that this is still under development with several hand-crafted parameters
 
 - [iiwa-phys](#iiwa-phys)
@@ -74,49 +74,86 @@
 3. Run a command in the docker container
 
 #### Gazebo Classic on ROS1
-- Show a LBR iiwa robot using rviz
+- Show an LBR iiwa robot using rviz
     ```bash
     conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_description display_iiwa.launch end_effector:='[rq140]'
     ```  
     <img src=dataset/images/iiwa_rviz.png width=320>  
 
-- Demonstrate a MoveIt GUI to try motion generations for a LBR iiwa robot
+- Demonstrate a MoveIt GUI to try motion generations for an LBR iiwa robot
     ```bash
     conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo.launch end_effector:='[rq140]' '[use_gui:=true]'
     ```  
     <img src=dataset/images/iiwa_moveit.gif width=320>  
 
-- Execute and visualize an example motion for a LBR iiwa robot with MoveIt
+- Execute and visualize an example motion for an LBR iiwa robot with MoveIt
     ```bash
     conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_example_motion iiwa_example.launch
     ```  
     <img src=dataset/images/iiwa_moveit_example.gif width=320>  
 
-- Demonstrate an example motion for a LBR iiwa robot on Gazebo
+- Demonstrate an example motion for an LBR iiwa robot on Gazebo
     ```bash
     conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo_gazebo.launch enf_effector:='[rq140]'
     ```  
     <img src=dataset/images/iiwa_gazebo.gif width=320>  
 
 #### Pybullet
-- Show a LBR iiwa robot
+- Show an LBR iiwa robot
     ```bash
     cd /scripts && conda activate pybullet && python pybullet_vis.py
     ```  
     <img src=dataset/images/iiwa_bullet_vis.png width=320>  
 
-- Example motion planning for a LBR iiwa robot
+- Example motion planning for an LBR iiwa robot
     ```bash
     cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg '[naiveRRT, RRT, BiRRT, RRTStar, BiRRTStar]'
     ```  
     <img src=dataset/images/iiwa_bullet_rrt.gif width=320>  
 
 #### MuJoCo
-- Show a LBR iiwa robot
+- Show an LBR iiwa robot
     ```bash
     cd /scripts && conda activate mujoco && python mujoco_vis.py
     ```  
     <img src=dataset/images/iiwa_mujoco_vis.png width=320>
+
+#### Gazebo Ignition on ROS2
+- Show an LBR iiwa robot using rviz2
+    ```bash
+    byobu
+    ```  
+    ```bash
+    ros2 launch lbr_bringup mock.launch.py model:=iiwa14
+    ```  
+    ```bash
+    ros2 launch lbr_bringup rviz.launch.py rviz_cfg_pkg:=lbr_bringup rviz_cfg:=config/mock.rviz
+    ```  
+    <img src=dataset/images/iiwa_rviz2.png width=320>  
+
+- Demonstrate a MoveIt GUI to try motion generations for an LBR iiwa robot
+    ```bash
+    byobu
+    ```  
+    ```bash
+    ros2 launch lbr_bringup mock.launch.py model:=iiwa14
+    ```  
+    ```bash
+    ros2 launch lbr_bringup move_group.launch.py mode:=mock rviz:=true model:=iiwa14
+    ```  
+    <img src=dataset/images/iiwa_moveit2.gif width=320>  
+
+- Demonstrate an example motion for an LBR iiwa robot on Gazebo
+    ```bash
+    byobu
+    ```  
+    ```bash
+    ros2 launch lbr_bringup gazebo.launch.py ctrl:=joint_trajectory_controller model:=iiwa14
+    ```  
+    ```bash
+    ros2 run lbr_demos_py joint_trajectory_client --ros-args -r __ns:=/lbr
+    ```  
+    <img src=dataset/images/iiwa_gazebo2.gif width=320>  
 
 ## Contributors
 
