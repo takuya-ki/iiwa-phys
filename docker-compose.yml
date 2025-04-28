@@ -21,7 +21,6 @@ services:
             - ./catkin_ws/src/iiwa_example_motion:/catkin_ws/src/iiwa_example_motion
             - ./catkin_ws/src/iiwa_description:/catkin_ws/src/iiwa_description
             - ./catkin_ws/src/iiwa_moveit_config:/catkin_ws/src/iiwa_moveit_config
-            - ./scripts/isaacgym_pick.py:/scripts/isaacgym_pick.py
             - ./scripts/isaacgym_rrt.py:/scripts/isaacgym_rrt.py
             - ./scripts/isaacgym_vis.py:/scripts/isaacgym_vis.py
             - ./scripts/pybullet_rrt.py:/scripts/pybullet_rrt.py
