@@ -141,6 +141,12 @@
     ```  
     <img src=dataset/images/iiwa_genesys_hello.gif width=320>
 
+- Demonstrate some poses of an LBR iiwa robot
+    ```bash
+    cd /scripts && conda activate genesys && python genesys_motion.py
+    ```  
+    <img src=dataset/images/iiwa_genesys_motion.gif width=320>
+
 #### Gazebo Ignition on ROS2
 - Show an LBR iiwa robot using rviz2
     ```bash
