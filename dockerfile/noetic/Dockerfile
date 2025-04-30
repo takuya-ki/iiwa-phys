@@ -111,6 +111,14 @@ WORKDIR /
 RUN . ~/.bashrc && conda create --name=mujoco python=3.8 -y
 RUN . ~/.bashrc && conda activate mujoco && pip3 install mujoco mujoco-python-viewer jupyter numpy matplotlib
 
+# genesys
+WORKDIR /
+RUN . ~/.bashrc && conda create --name=genesys python=3.10 -y
+RUN . ~/.bashrc && conda activate genesys && pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+RUN . ~/.bashrc && conda activate genesys && pip install git+https://github.com/Genesis-Embodied-AI/Genesis.git
+WORKDIR /scripts/
+RUN git clone https://github.com/Genesis-Embodied-AI/Genesis --recursive
+
 # Generates bash commands
 WORKDIR /catkin_ws/src/
 RUN echo "conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_description display_iiwa.launch end_effector:=rq140" >> ~/.bash_history
