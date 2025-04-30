@@ -111,11 +111,11 @@ WORKDIR /
 RUN . ~/.bashrc && conda create --name=mujoco python=3.8 -y
 RUN . ~/.bashrc && conda activate mujoco && pip3 install mujoco mujoco-python-viewer jupyter numpy matplotlib
 
-# genesys
+# genesis
 WORKDIR /
-RUN . ~/.bashrc && conda create --name=genesys python=3.10 -y
-RUN . ~/.bashrc && conda activate genesys && pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
-RUN . ~/.bashrc && conda activate genesys && pip install git+https://github.com/Genesis-Embodied-AI/Genesis.git
+RUN . ~/.bashrc && conda create --name=genesis python=3.10 -y
+RUN . ~/.bashrc && conda activate genesis && pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+RUN . ~/.bashrc && conda activate genesis && pip install git+https://github.com/Genesis-Embodied-AI/Genesis.git
 WORKDIR /scripts/
 RUN git clone https://github.com/Genesis-Embodied-AI/Genesis --recursive
 
@@ -143,5 +143,6 @@ RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 pytho
 
 RUN echo "cd /scripts && conda activate mujoco && python mujoco_vis.py" >> ~/.bash_history
 
-RUN echo "cd /scripts && conda activate genesys && python genesys_hello.py" >> ~/.bash_history
-RUN echo "cd /scripts && conda activate genesys && python genesys_motion.py" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate genesis && python genesis_hello.py" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate genesis && python genesis_motion.py" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate genesis && python genesis_ik_motion_planning_grasp.py" >> ~/.bash_history

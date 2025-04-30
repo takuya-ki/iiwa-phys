@@ -15,7 +15,7 @@
     - [Pybullet](#pybullet)
     - [Isaac Gym](#isaac-gym)
     - [MuJoCo](#mujoco)
-    - [Genesys](#genesys)
+    - [Genesis](#genesis)
     - [Gazebo Ignition on ROS2](#gazebo-ignition-on-ros2)
 
 ## Features
@@ -25,7 +25,7 @@
   2. [PyBullet](https://pybullet.org/wordpress/)
   3. [Isaac Gym](https://developer.nvidia.com/isaac-gym)
   4. [MuJoCo](https://mujoco.org/)
-  5. [Genesys](https://genesis-embodied-ai.github.io/)
+  5. [Genesis](https://genesis-embodied-ai.github.io/)
   6. [Gazebo Ignition](https://gazebosim.org/)
   - Please refer to the comparison below
     - [A brief summary for physics simulators](https://simulately.wiki/docs/comparison/)
@@ -71,7 +71,7 @@
       - [Pybullet](#pybullet)
       - [Isaac Gym](#isaac-gym)
       - [MuJoCo](#mujoco)
-      - [Genesys](#genesys)
+      - [Genesis](#genesis)
     - iiwa_phys_humble_container
       - [Gazebo Ignition on ROS2](#gazebo-ignition-on-ros2)
 3. Run a command in the docker container
@@ -134,18 +134,18 @@
     ```  
     <img src=dataset/images/iiwa_mujoco_vis.png width=320>
 
-#### Genesys
+#### Genesis
 - Show an LBR iiwa robot
     ```bash
-    cd /scripts && conda activate genesys && python genesys_hello.py
+    cd /scripts && conda activate genesis && python genesis_hello.py
     ```  
-    <img src=dataset/images/iiwa_genesys_hello.gif width=320>
+    <img src=dataset/images/iiwa_genesis_hello.gif width=320>
 
 - Demonstrate some poses of an LBR iiwa robot
     ```bash
-    cd /scripts && conda activate genesys && python genesys_motion.py
+    cd /scripts && conda activate genesis && python genesis_motion.py
     ```  
-    <img src=dataset/images/iiwa_genesys_motion.gif width=320>
+    <img src=dataset/images/iiwa_genesis_motion.gif width=320>
 
 #### Gazebo Ignition on ROS2
 - Show an LBR iiwa robot using rviz2
