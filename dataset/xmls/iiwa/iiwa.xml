@@ -1,21 +1,15 @@
-<mujoco model="iiwa">
+<mujoco model="iiwa_gripper">
     <compiler angle="radian" meshdir="" inertiagrouprange="0 0"/>
     <option impratio="20" cone="elliptic" density="1.2" viscosity="0.00002"/>
     <size nconmax="5000" njmax="5000"/>
 
     <!-- iiwa assets-->
-    <include file="assets/iiwa_assets.xml"/>
+    <include file="assets/assets.xml"/>
 
     <!-- arena -->
     <include file="../common_arena/simple_plane.xml"/> 
 
     <!-- iiwa body xml-->
-    <include file="assets/iiwa_body.xml"/>
-
-    <!-- iiwa arm actuator-->
-    <include file="assets/iiwa_arm_motor_actuator.xml"/>
-
-    <!-- robotiq gripper actuator-->
-    <include file="assets/robotiq_gripper_position_actuator.xml"/>
+    <include file="assets/iiwa14.xml"/>
 
 </mujoco>

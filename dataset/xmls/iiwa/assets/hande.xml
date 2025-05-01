@@ -1,0 +1,18 @@
+<mujocoinclude>
+
+    <body name="hande">
+        <geom name="hande_coupler" type="mesh" conaffinity="0" group="1" rgba="0.1 0.1 0.1 1" mesh="coupler" />
+        <geom name="hande_base" type="mesh" conaffinity="0" group="1" rgba="0.1 0.1 0.1 1" mesh="hande" />
+        <body name="hande_left_finger" pos="0 0 0.099">
+            <inertial pos="0.02262 -0.00759 0.00738" quat="0.871952 0.0369732 -0.211073 0.440205" mass="0.03804" diaginertia="1.22763e-05 1.22763e-05 1.22763e-05" />
+            <joint name="hande_left_finger_joint" class="hande_left_finger" pos="0 0 0" axis="1 0 0" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.4 0.4 0.4 1" mesh="left_finger" />
+        </body>
+        <body name="hande_right_finger" pos="0 0 0.099">
+            <inertial pos="-0.02262 0.00759 0.00738" quat="0.871952 -0.0369732 0.211073 0.440205" mass="0.03804" diaginertia="1.22763e-05 1.22763e-05 1.22763e-05" />
+            <joint name="hande_right_finger_joint" class="hande_right_finger" pos="0 0 0" axis="-1 0 0" />
+            <geom type="mesh" contype="0" conaffinity="0" group="1" rgba="0.4 0.4 0.4 1" mesh="right_finger" />
+        </body>
+    </body>
+
+</mujocoinclude>

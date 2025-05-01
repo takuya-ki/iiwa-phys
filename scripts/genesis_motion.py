@@ -36,8 +36,8 @@ jnt_names = [
     'iiwa_joint_5',
     'iiwa_joint_6',
     'iiwa_joint_7',
-    'right_driver_joint',
-    'left_driver_joint',
+    'hande_left_finger_joint',
+    'hande_right_finger_joint',
 ]
 dofs_idx = [iiwa.get_joint(name).dof_idx_local for name in jnt_names]
 
