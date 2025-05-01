@@ -311,13 +311,13 @@
   <link name="hand_e_link">
     <collision>
       <geometry>
-        <mesh filename="/dataset/meshes/hande/hand-e.obj" scale="1.0 1.0 1.0"/>
+        <mesh filename="/dataset/meshes/hande/hande.stl" scale="1.0 1.0 1.0"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
     <visual>
       <geometry>
-        <mesh filename="/dataset/meshes/hande/hand-e.dae" scale="1.0 1.0 1.0"/>
+        <mesh filename="/dataset/meshes/hande/hande.stl" scale="1.0 1.0 1.0"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <origin rpy="-1.5707 0 0" xyz="0 0 0"/>
@@ -334,13 +334,13 @@
   <link name="hande_left_finger">
     <collision>
       <geometry>
-        <mesh filename="/dataset/meshes/hande/finger_1.dae" scale="1.0 1.0 1.0"/>
+        <mesh filename="/dataset/meshes/hande/finger_1.stl" scale="1.0 1.0 1.0"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
     <visual>
       <geometry>
-        <mesh filename="/dataset/meshes/hande/finger_1.dae" scale="1.0 1.0 1.0"/>
+        <mesh filename="/dataset/meshes/hande/finger_1.stl" scale="1.0 1.0 1.0"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="DarkGray">
@@ -356,13 +356,13 @@
   <link name="hande_right_finger">
     <collision>
       <geometry>
-        <mesh filename="/dataset/meshes/hande/finger_2.dae" scale="1.0 1.0 1.0"/>
+        <mesh filename="/dataset/meshes/hande/finger_2.stl" scale="1.0 1.0 1.0"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
     <visual>
       <geometry>
-        <mesh filename="/dataset/meshes/hande/finger_2.dae" scale="1.0 1.0 1.0"/>
+        <mesh filename="/dataset/meshes/hande/finger_2.stl" scale="1.0 1.0 1.0"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="DarkGray">

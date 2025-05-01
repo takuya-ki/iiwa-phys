@@ -117,6 +117,7 @@ default_dof_state["pos"] = default_dof_pos
 
 # get link index of robotiq hand, which we will use as end effector
 iiwa_link_dict = gym.get_asset_rigid_body_dict(iiwa_asset)
+# {'base_link': 1, 'eef_root': 16, 'eef_tip': 17, 'gripper_tip_link': 12, 'hand_e_link': 13, 'hande_left_finger': 14, 'hande_right_finger': 15, 'iiwa_link_0': 2, 'iiwa_link_1': 3, 'iiwa_link_2': 4, 'iiwa_link_3': 5, 'iiwa_link_4': 6, 'iiwa_link_5': 7, 'iiwa_link_6': 8, 'iiwa_link_7': 9, 'iiwa_link_ee': 10, 'robotiq_coupler': 11, 'world': 0}
 iiwa_hand_index = iiwa_link_dict["iiwa_link_ee"]
 
 # configure env grid
