@@ -145,4 +145,4 @@ RUN echo "cd /scripts && conda activate mujoco && python mujoco_vis.py" >> ~/.ba
 
 RUN echo "cd /scripts && conda activate genesis && python genesis_hello.py" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate genesis && python genesis_motion.py" >> ~/.bash_history
-RUN echo "cd /scripts && conda activate genesis && python genesis_ik_motion_planning_grasp.py" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate genesis && python genesis_grasp.py" >> ~/.bash_history

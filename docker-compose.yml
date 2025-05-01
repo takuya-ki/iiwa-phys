@@ -28,7 +28,7 @@ services:
             - ./scripts/mujoco_vis.py:/scripts/mujoco_vis.py
             - ./scripts/genesis_hello.py:/scripts/genesis_hello.py
             - ./scripts/genesis_motion.py:/scripts/genesis_motion.py
-            - ./scripts/genesis_ik_motion_planning_grasp.py:/scripts/genesis_ik_motion_planning_grasp.py
+            - ./scripts/genesis_grasp.py:/scripts/genesis_grasp.py
             # dataset
             - ./dataset/:/dataset
         privileged: true
