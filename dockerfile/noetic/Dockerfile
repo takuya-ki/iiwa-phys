@@ -140,6 +140,7 @@ RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 pytho
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg BiRRT" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg RRTStar" >> ~/.bash_history
 RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg BiRRTStar" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_pick.py --num_envs 1" >> ~/.bash_history
 
 RUN echo "cd /scripts && conda activate mujoco && python mujoco_vis.py" >> ~/.bash_history
 
