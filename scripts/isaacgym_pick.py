@@ -205,7 +205,7 @@ default_dof_pos = np.zeros(iiwa_num_dofs, dtype=np.float32)
 # default_dof_pos[:7] = iiwa_mids[:7]
 default_dof_pos[:7] = [0, np.pi/7., 0., -2*np.pi/3., 0., -np.pi/5, np.pi/2.]
 spacing = 1.0
-cam_pos = gymapi.Vec3(1.5, 0, 1.5)
+cam_pos = gymapi.Vec3(2.0, 0, 1.5)
 
 # grippers open
 default_dof_pos[7:] = iiwa_upper_limits[7:]

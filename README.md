@@ -127,6 +127,12 @@
     ```  
     <img src=dataset/images/iiwa_gym_rrt.gif width=320>  
 
+- Example pick-and-place motions for an LBR iiwa robot
+    ```bash
+    cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_pick.py --num_envs 1
+    ```  
+    <img src=dataset/images/iiwa_gym_pick.gif width=320>  
+
 #### MuJoCo
 - Show an LBR iiwa robot
     ```bash
