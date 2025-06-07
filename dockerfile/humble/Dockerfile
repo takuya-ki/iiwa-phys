@@ -116,7 +116,7 @@ RUN /bin/bash -c "touch /root/colcon_ws/src/moveit2/moveit_ros/robot_interaction
 RUN /bin/bash -c "touch /root/colcon_ws/src/moveit2/moveit_ros/hybrid_planning/COLCON_IGNORE"
 RUN git clone https://github.com/ros-planning/moveit_task_constructor.git -b humble --recursive && \
     cd moveit_task_constructor && \
-    git reset --hard e704159
+    git reset --hard 7566349
 RUN git clone https://github.com/ros-planning/srdfdom.git -b ros2 --recursive && \
     cd srdfdom && \
     git reset --hard c118b35
