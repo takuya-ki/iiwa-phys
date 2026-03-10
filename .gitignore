@@ -9,3 +9,5 @@ dataset/pickle/*
 !dataset/pickle/.gitkeep
 dockerfile/isaacgym
 scripts/pybullet_planning
+*.claude
+CLAUDE.md

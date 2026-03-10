@@ -63,12 +63,12 @@ def rpy2r(rpy):
     roll  = rpy[0]
     pitch = rpy[1]
     yaw   = rpy[2]
-    Cphi  = np.math.cos(roll)
-    Sphi  = np.math.sin(roll)
-    Cthe  = np.math.cos(pitch)
-    Sthe  = np.math.sin(pitch)
-    Cpsi  = np.math.cos(yaw)
-    Spsi  = np.math.sin(yaw)
+    Cphi  = math.cos(roll)
+    Sphi  = math.sin(roll)
+    Cthe  = math.cos(pitch)
+    Sthe  = math.sin(pitch)
+    Cpsi  = math.cos(yaw)
+    Spsi  = math.sin(yaw)
     R     = np.array([
         [Cpsi * Cthe, -Spsi * Cphi + Cpsi * Sthe * Sphi, Spsi * Sphi + Cpsi * Sthe * Cphi],
         [Spsi * Cthe, Cpsi * Cphi + Spsi * Sthe * Sphi, -Cpsi * Sphi + Spsi * Sthe * Cphi],
@@ -110,7 +110,7 @@ def r2w(R):
     elif R[0,0] > 0 and R[1,1] > 0 and R[2,2] > 0:
         w = np.array([[0, 0, 0]]).T
     else:
-        w = np.math.pi/2 * np.array([[R[0,0]+1], [R[1,1]+1], [R[2,2]+1]])
+        w = math.pi/2 * np.array([[R[0,0]+1], [R[1,1]+1], [R[2,2]+1]])
     return w.flatten()
 
 
@@ -341,7 +341,7 @@ class MuJoCoParserClass(object):
 
     def grab_image(self):
         """
-            Grab the rendered iamge
+            Grab the rendered image
         """
         img = np.zeros((self.viewer.viewport.height,self.viewer.viewport.width,3),dtype=np.uint8)
         mujoco.mjr_render(self.viewer.viewport,self.viewer.scn,self.viewer.ctx)

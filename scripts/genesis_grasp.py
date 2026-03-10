@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import numpy as np
 import genesis as gs
 
@@ -46,7 +48,7 @@ jnt_names = [
 ]
 dofs_idx = [iiwa.get_joint(name).dof_idx_local for name in jnt_names]
 
-# builduing the scene
+# building the scene
 scene.build()
 
 # degrees of freedom

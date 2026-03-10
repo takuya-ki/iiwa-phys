@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import genesis as gs
 
 gs.init(backend=gs.cpu)
@@ -17,7 +19,7 @@ scene = gs.Scene(
 plane = scene.add_entity(
     gs.morphs.Plane(),
 )
-franka = scene.add_entity(
+iiwa = scene.add_entity(
     # gs.morphs.URDF(
     #     file='/dataset/urdfs/iiwa14_rqhe.urdf',
     #     fixed=True,
