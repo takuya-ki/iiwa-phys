@@ -163,7 +163,7 @@ sdf_label = ''
 if args.sdf:
     sdf_label = '_sdf'
 
-iiwa_asset_file = os.path.join(
+iiwa_urdf_file = os.path.join(
     'urdfs', 'iiwa14_rqhe' + sdf_label + '.urdf')
 
 asset_options = gymapi.AssetOptions()
@@ -175,7 +175,7 @@ asset_options.use_mesh_materials = True
 asset_options.mesh_normal_mode = gymapi.COMPUTE_PER_VERTEX
 asset_options.vhacd_enabled = True
 asset_options.convex_decomposition_from_submeshes = True
-iiwa_asset = gym.load_asset(sim, asset_root, iiwa_asset_file, asset_options)
+iiwa_asset = gym.load_asset(sim, asset_root, iiwa_urdf_file, asset_options)
 
 # configure iiwa dofs
 # iiwa_dof_names = gym.get_asset_dof_names(iiwa_asset)

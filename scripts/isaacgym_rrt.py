@@ -398,7 +398,7 @@ class RRT(object):
 
     def _load_iiwa(self):
 
-        iiwa_asset_file = os.path.join(
+        iiwa_urdf_file = os.path.join(
             'urdfs', 'iiwa14_rqhe' + self.sdf_label + '.urdf')
 
         # setting the asset option
@@ -417,7 +417,7 @@ class RRT(object):
             asset_options.vhacd_params.max_num_vertices_per_ch = 30000
 
         self.iiwa_asset = self.gym.load_asset(
-            self.sim, self._asset_root, iiwa_asset_file, asset_options)
+            self.sim, self._asset_root, iiwa_urdf_file, asset_options)
 
         # setting the force sensors
         self.num_bodies = self.gym.get_asset_rigid_body_count(self.iiwa_asset)
@@ -815,7 +815,7 @@ class RRT(object):
                 n_envs=len(on_env_ids))
 
             for i, ei in enumerate(on_env_ids):
-                # extend roadmap while checking collsiion
+                # extend roadmap while checking collision
                 last_nid = self._extend_roadmap(
                     roadmap=self.roadmaps[ei],
                     conf=rand_conf[i],
@@ -1015,7 +1015,7 @@ class naiveRRT(RRT):
         curr_path.pop()
         visited[idx] = 0
 
-    # mehod override
+    # method override
     def plan(
             self,
             ext_dist=0.1,
@@ -1158,7 +1158,7 @@ class naiveRRT(RRT):
             self._cleanup_sim()
             return self.path_confs
 
-    # mehod override
+    # method override
     def visualize_path(self, env_ids):
 
         near_poslist = [{0: self.start_position} for _ in range(self.num_envs)]
@@ -1206,7 +1206,7 @@ class BiRRT(RRT):
         self.roadmaps_start = [nx.Graph() for _ in range(self.num_envs)]
         self.roadmaps_goal = [nx.Graph() for _ in range(self.num_envs)]
 
-    # mehod override
+    # method override
     def plan(
             self,
             ext_dist=2,
@@ -1369,7 +1369,7 @@ class RRTStar(RRT):
         nodes_conf_value_list = list(nodes_conf_dict.values())
         conf_array = np.array(nodes_conf_value_list)
         diff_conf_array = np.linalg.norm(conf_array - new_conf, axis=1)
-        # warninng: assumes no collision
+        # warning: assumes no collision
         candidate_mask = diff_conf_array < ext_dist * self.nearby_ratio
         nodes_conf_key_array = np.array(nodes_conf_key_list, dtype=object)
         nearby_nid_list = list(nodes_conf_key_array[candidate_mask])
@@ -1441,7 +1441,7 @@ class RRTStar(RRT):
                     return 'connection'
                 return nearby_min_cost_nid
 
-    # mehod override
+    # method override
     def plan(
             self,
             ext_dist=2,
@@ -1491,7 +1491,7 @@ class RRTStar(RRT):
                 n_envs=len(on_env_ids))
 
             for i, ei in enumerate(on_env_ids):
-                # extend_roadmap_while_checking_collsiion
+                # extend_roadmap_while_checking_collision
                 last_nid = self._extend_roadmap(
                     roadmap=self.roadmaps[ei],
                     conf=rand_conf[i],
@@ -1637,7 +1637,7 @@ class BiRRTStar(RRTStar):
                 return new_nid
         return nearest_nid
 
-    # mehod override
+    # method override
     def plan(
             self,
             ext_dist=2,

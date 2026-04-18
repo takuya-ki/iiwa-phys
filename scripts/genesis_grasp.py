@@ -4,7 +4,7 @@ import numpy as np
 import genesis as gs
 
 # initializing
-gs.init(backend=gs.gpu)
+gs.init(backend=gs.cpu)
 
 # generating the scene
 scene = gs.Scene(

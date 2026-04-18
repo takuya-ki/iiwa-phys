@@ -76,7 +76,7 @@ sdf_label = ''
 if args.sdf:
     sdf_label = '_sdf'
 
-iiwa_asset_file = os.path.join(
+iiwa_urdf_file = os.path.join(
     'urdfs', 'iiwa14_rqhe' + sdf_label + '.urdf')
 
 spacing = 1.0
@@ -87,7 +87,7 @@ asset_options.armature = 0.01
 asset_options.fix_base_link = True
 asset_options.disable_gravity = True
 asset_options.flip_visual_attachments = False
-iiwa_asset = gym.load_asset(sim, asset_root, iiwa_asset_file, asset_options)
+iiwa_asset = gym.load_asset(sim, asset_root, iiwa_urdf_file, asset_options)
 
 # configure iiwa dofs
 iiwa_dof_props = gym.get_asset_dof_properties(iiwa_asset)

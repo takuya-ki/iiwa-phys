@@ -11,22 +11,20 @@
   - [Dependency (tested as a host machine)](#dependency-tested-as-a-host-machine)
   - [Installation](#installation)
   - [Usage](#usage)
-    - [Gazebo Classic on ROS1](#gazebo-classic-on-ros1)
     - [Pybullet](#pybullet)
     - [Isaac Gym](#isaac-gym)
     - [MuJoCo](#mujoco)
     - [Genesis](#genesis)
-    - [Gazebo Ignition on ROS2](#gazebo-ignition-on-ros2)
+    - [Gazebo](#gazebo)
 
 ## Features
 
 - Support the following physics simulators
-  1. [Gazebo Classic](https://classic.gazebosim.org/)
-  2. [PyBullet](https://pybullet.org/wordpress/)
-  3. [Isaac Gym](https://developer.nvidia.com/isaac-gym)
-  4. [MuJoCo](https://mujoco.org/)
-  5. [Genesis](https://genesis-embodied-ai.github.io/)
-  6. [Gazebo Ignition](https://gazebosim.org/)
+  1. [PyBullet](https://pybullet.org/wordpress/)
+  2. [Isaac Gym](https://developer.nvidia.com/isaac-gym)
+  3. [MuJoCo](https://mujoco.org/)
+  4. [Genesis](https://genesis-embodied-ai.github.io/)
+  5. [Gazebo](https://gazebosim.org/)
   - Please refer to the comparison below
     - [A brief summary for physics simulators](https://simulately.wiki/docs/comparison/)
     - [A Review of Nine Physics Engines for Reinforcement Learning Research](https://arxiv.org/pdf/2407.08590v1)
@@ -50,7 +48,7 @@
 2. Download and install Isaac Gym Preview 4 from https://developer.nvidia.com/isaac-gym
 3. Unzip the file via  
     ```bash
-    tar -xf IsaacGym_Preview_4_Package.tar.gz -C pathto/iiwa-phys/dockerfile/noetic
+    tar -xf IsaacGym_Preview_4_Package.tar.gz -C pathto/iiwa-phys/dockerfile/humble
     ```  
 4. Build the dockerfile
     ```bash
@@ -65,42 +63,9 @@
     ```  
 2. Execute the docker container
     ```bash
-    xhost + && docker exec -it iiwa_phys_[noetic/humble]_container bash
+    xhost + && docker exec -it iiwa_phys_humble_container bash
     ```  
-    - iiwa_phys_noetic_container
-      - [Gazebo Classic on ROS1](#gazebo-classic-on-ros1)
-      - [Pybullet](#pybullet)
-      - [Isaac Gym](#isaac-gym)
-      - [MuJoCo](#mujoco)
-      - [Genesis](#genesis)
-    - iiwa_phys_humble_container
-      - [Gazebo Ignition on ROS2](#gazebo-ignition-on-ros2)
 3. Run a command in the docker container
-
-#### Gazebo Classic on ROS1
-- Show an LBR iiwa robot using rviz
-    ```bash
-    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_description display_iiwa.launch end_effector:='[rq140]'
-    ```  
-    <img src=dataset/images/iiwa_rviz.png width=320>  
-
-- Demonstrate a MoveIt GUI to try motion generations for an LBR iiwa robot
-    ```bash
-    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo.launch end_effector:='[rq140]' '[use_gui:=true]'
-    ```  
-    <img src=dataset/images/iiwa_moveit.gif width=320>  
-
-- Execute and visualize an example motion for an LBR iiwa robot with MoveIt
-    ```bash
-    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_example_motion iiwa_example.launch
-    ```  
-    <img src=dataset/images/iiwa_moveit_example.gif width=320>  
-
-- Demonstrate an example motion for an LBR iiwa robot on Gazebo
-    ```bash
-    conda deactivate && source /opt/ros/noetic/setup.bash && source /catkin_ws/devel/setup.bash && roslaunch iiwa_moveit_config demo_gazebo.launch enf_effector:='[rq140]'
-    ```  
-    <img src=dataset/images/iiwa_gazebo.gif width=320>  
 
 #### Pybullet
 - Show an LBR iiwa robot
@@ -154,7 +119,7 @@
     ```  
     <img src=dataset/images/iiwa_genesis_motion.gif width=320>
 
-#### Gazebo Ignition on ROS2
+#### Gazebo
 - Show an LBR iiwa robot using rviz2
     ```bash
     byobu
@@ -165,7 +130,7 @@
     ```bash
     ros2 launch lbr_bringup rviz.launch.py rviz_cfg_pkg:=lbr_bringup rviz_cfg:=config/mock.rviz
     ```  
-    <img src=dataset/images/iiwa_rviz2.png width=320>  
+    <img src=dataset/images/iiwa_rviz.png width=320>  
 
 - Demonstrate a MoveIt GUI to try motion generations for an LBR iiwa robot
     ```bash
@@ -177,7 +142,7 @@
     ```bash
     ros2 launch lbr_bringup move_group.launch.py mode:=mock rviz:=true model:=iiwa14
     ```  
-    <img src=dataset/images/iiwa_moveit2.gif width=320>  
+    <img src=dataset/images/iiwa_moveit.gif width=320>  
 
 - Demonstrate an example motion for an LBR iiwa robot on Gazebo
     ```bash
@@ -189,7 +154,7 @@
     ```bash
     ros2 run lbr_demos_py joint_trajectory_client --ros-args -r __ns:=/lbr
     ```  
-    <img src=dataset/images/iiwa_gazebo2.gif width=320>  
+    <img src=dataset/images/iiwa_gazebo.gif width=320>  
 
 ## Contributors
 

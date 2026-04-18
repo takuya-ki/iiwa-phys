@@ -83,12 +83,12 @@ if __name__ == "__main__":
     p.stepSimulation()
     obstacles = [plane, obstacle1, obstacle2, obstacle3]
 
-    iiwa_urdfname = 'iiwa14_rq140.urdf'
+    iiwa_urdf_file = 'iiwa14_rq140.urdf'
     iiwa = p.loadURDF(
         os.path.join(
             asset_root,
             'urdfs',
-            iiwa_urdfname),
+            iiwa_urdf_file),
         basePosition=[0, 0, 0.02],
         useFixedBase=True)
     p.stepSimulation()

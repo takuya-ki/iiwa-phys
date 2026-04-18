@@ -636,7 +636,7 @@ if __name__ == "__main__":
         q=np.array([0, 0, 0, 0, 0, 0, 0])*np.pi/180.0,
         joint_idxs=[0, 1, 2, 3, 4, 5, 6])
 
-    ik_body_name = 'iiwa_link_ee'
+    ik_body_name = 'hand'
     p_trgt, R_trgt = np.array(position), rpy2r(np.array([-180, 0, 90])*np.pi/180.0)
     T_trgt_init = pr2t(p_trgt, R_trgt)
     while (env.tick < 10000) and env.is_viewer_alive():

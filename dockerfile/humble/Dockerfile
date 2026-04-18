@@ -91,8 +91,6 @@ WORKDIR /root/colcon_ws
 RUN	/bin/bash -c "source /opt/ros/humble/setup.bash && colcon build"
 RUN	echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc && \
     echo "source /root/colcon_ws/install/setup.bash" >> ~/.bashrc && \
-    echo "export ROS_PACKAGE_PATH=\${ROS_PACKAGE_PATH}:/root/colcon_ws" >> ~/.bashrc && \
-    echo "export ROS_WORKSPACE=/root/colcon_ws" >> ~/.bashrc && \
     echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc && \
     echo "export _colcon_cd_root=/opt/ros/humble/" >> ~/.bashrc
 
@@ -132,9 +130,9 @@ RUN git clone https://github.com/takuya-ki/gazebo-pkgs.git -b humble && \
 RUN git clone https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins.git -b ros2 && \
     cd roboticsgroup_upatras_gazebo_plugins && \
     git reset --hard 8bf90f5
-RUN echo "export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/root/colcon_ws/build/gazebo_grasp_plugin" >> ~/.bashrc
-RUN echo "export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/root/colcon_ws/build/roboticsgroup_upatras_gazebo_plugins" >> ~/.bashrc
-RUN echo "export PLUGINLIB_EXPORT_CLASS=$PLUGINLIB_EXPORT_CLASS:/root/colcon_ws/install/iiwa_gazebo/lib" >> ~/.bashrc
+RUN echo 'export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/root/colcon_ws/build/gazebo_grasp_plugin' >> ~/.bashrc
+RUN echo 'export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/root/colcon_ws/build/roboticsgroup_upatras_gazebo_plugins' >> ~/.bashrc
+RUN echo 'export PLUGINLIB_EXPORT_CLASS=$PLUGINLIB_EXPORT_CLASS:/root/colcon_ws/install/iiwa_gazebo/lib' >> ~/.bashrc
 RUN echo "export IGN_IP=127.0.0.1" >> ~/.bashrc
 
 WORKDIR /root/colcon_ws/
@@ -163,6 +161,54 @@ RUN apt install -y --no-install-recommends ros-humble-kinematics-interface
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash && colcon build --executor parallel --parallel-workers $PARALLELWORKERS --symlink-install --mixin release" && \
     /bin/bash -c "source /root/colcon_ws/install/setup.bash"
 
+# Anaconda (for conda-based simulator environments)
+WORKDIR /
+RUN wget -P /opt https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh && \
+    bash /opt/Anaconda3-2020.02-Linux-x86_64.sh -b -p /opt/anaconda3 && \
+    rm /opt/Anaconda3-2020.02-Linux-x86_64.sh && \
+    export PATH=/opt/anaconda3/bin:$PATH && \
+    . ~/.bashrc && conda init && conda update -n base -c defaults conda
+
+# pybullet
+WORKDIR /
+RUN . ~/.bashrc && conda create --name=pybullet python=3.8 -y
+RUN . ~/.bashrc && conda activate pybullet && pip3 install gym numpy sympy pyglet Pillow pybullet numpy-quaternion pickle-mixin seaborn pandas pyassimp==4.1.3
+RUN git clone https://github.com/caelan/pybullet-planning.git /opt/pybullet_planning --recursive && \
+    cd /opt/pybullet_planning && \
+    git config --global --add safe.directory /opt/pybullet_planning && \
+    git reset --hard d536384 && \
+    git pull --recurse-submodules
+RUN . ~/.bashrc && conda activate pybullet && cd /opt/pybullet_planning && pip3 install -r requirements.txt scipy networkx
+RUN mkdir -p /opt/anaconda3/envs/pybullet/etc/conda/activate.d && \
+    echo 'export PYTHONPATH=$PYTHONPATH:/opt' > /opt/anaconda3/envs/pybullet/etc/conda/activate.d/pybullet_env.sh
+
+# isaacgym (download IsaacGym_Preview_4_Package before building this)
+WORKDIR /
+COPY ./isaacgym/ /tmp/isaacgym/
+RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/tmp/isaacgym/python/isaacgym/_bindings/linux-x86_64' >> ~/.bashrc
+RUN git clone https://github.com/isaac-sim/IsaacGymEnvs.git --recursive /tmp/IsaacGymEnvs && \
+    cd /tmp/IsaacGymEnvs && \
+    git reset --hard aeed298
+RUN . ~/.bashrc && conda create --name=isaacgym python=3.8 -y
+RUN . ~/.bashrc && conda activate isaacgym && pip3 install --find-links https://download.pytorch.org/whl/torch_stable.html torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 numpy-quaternion matplotlib==3.6.3 seaborn
+RUN . ~/.bashrc && conda activate isaacgym && cd /tmp/isaacgym/python && pip3 install -e .
+RUN . ~/.bashrc && conda activate isaacgym && cd /tmp/IsaacGymEnvs && pip3 install -e . && pip3 install numpy==1.19.5 setuptools==69.5.1
+RUN mkdir -p /opt/anaconda3/envs/isaacgym/etc/conda/activate.d && \
+    echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib' > /opt/anaconda3/envs/isaacgym/etc/conda/activate.d/isaacgym_lib.sh
+
+# mujoco
+WORKDIR /
+RUN . ~/.bashrc && conda create --name=mujoco python=3.8 -y
+RUN . ~/.bashrc && conda activate mujoco && pip3 install mujoco mujoco-python-viewer jupyter numpy matplotlib
+
+# genesis
+WORKDIR /
+RUN . ~/.bashrc && conda create --name=genesis python=3.10 -y
+RUN . ~/.bashrc && conda activate genesis && pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+RUN . ~/.bashrc && conda activate genesis && pip install git+https://github.com/Genesis-Embodied-AI/Genesis.git
+WORKDIR /opt/
+RUN git clone https://github.com/Genesis-Embodied-AI/Genesis --recursive
+
 # Generates bash commands
 WORKDIR /root/colcon_ws/
 
@@ -180,3 +226,29 @@ RUN echo "ros2 run lbr_demos_py joint_trajectory_client --ros-args -r __ns:=/lbr
 
 RUN echo "ros2 daemon stop; sleep 1; ros2 daemon start; kill 0" >> ~/.bash_history
 RUN echo "source /opt/ros/humble/setup.bash && source /root/colcon_ws/install/setup.bash" >> ~/.bash_history
+
+# pybullet commands
+RUN echo "cd /scripts && conda activate pybullet && python pybullet_vis.py" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg naiveRRT" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg RRT" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg BiRRT" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg RRTStar" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate pybullet && python pybullet_rrt.py --alg BiRRTStar" >> ~/.bash_history
+
+# isaacgym commands
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs 1" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_vis.py --num_envs 1 --sdf" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg naiveRRT" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg RRT" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg BiRRT" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg RRTStar" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_rrt.py --alg BiRRTStar" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate isaacgym && CUDA_LAUNCH_BLOCKING=1 python isaacgym_pick.py --num_envs 1" >> ~/.bash_history
+
+# mujoco commands
+RUN echo "cd /scripts && conda activate mujoco && python mujoco_vis.py" >> ~/.bash_history
+
+# genesis commands
+RUN echo "cd /scripts && conda activate genesis && python genesis_hello.py" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate genesis && python genesis_motion.py" >> ~/.bash_history
+RUN echo "cd /scripts && conda activate genesis && python genesis_grasp.py" >> ~/.bash_history

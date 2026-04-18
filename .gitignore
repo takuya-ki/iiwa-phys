@@ -2,12 +2,11 @@
 *.vscode
 *.pyc
 /**/backup/**
-*.catkin_tools
 *.egg-info
 *.ipynb_checkpoints
 dataset/pickle/*
 !dataset/pickle/.gitkeep
-dockerfile/isaacgym
-scripts/pybullet_planning
+dockerfile/*/isaacgym
+*.tar.gz
 *.claude
 CLAUDE.md

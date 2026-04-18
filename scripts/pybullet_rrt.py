@@ -99,12 +99,12 @@ class RRT(object):
             p.resetJointState(body, joint, value)
 
     def _load_iiwa(self):
-        iiwa_urdfname = 'iiwa14_rq140.urdf'
+        iiwa_urdf_file = 'iiwa14_rq140.urdf'
         self.iiwa = p.loadURDF(
             os.path.join(
                 self._asset_root,
                 'urdfs',
-                iiwa_urdfname),
+                iiwa_urdf_file),
             basePosition=[0, 0, 0.02],
             useFixedBase=True)
         p.stepSimulation()
@@ -400,7 +400,7 @@ class RRT(object):
                 rand_rate=rand_rate_on,
                 default_conf=self.goal_conf)
 
-            # extend roadmap while checking collsiion
+            # extend roadmap while checking collision
             last_nid = self._extend_roadmap(
                 roadmap=self.roadmap,
                 conf=rand_conf,
@@ -787,7 +787,7 @@ class BiRRT(RRT):
         self.roadmap_start = nx.Graph()
         self.roadmap_goal = nx.Graph()
 
-    # mehod override
+    # method override
     def plan(
             self,
             ext_dist=2,
@@ -929,7 +929,7 @@ class RRTStar(RRT):
         nodes_conf_value_list = list(nodes_conf_dict.values())
         conf_array = np.array(nodes_conf_value_list)
         diff_conf_array = np.linalg.norm(conf_array - new_conf, axis=1)
-        # warninng: assumes no collision
+        # warning: assumes no collision
         candidate_mask = diff_conf_array < ext_dist * self.nearby_ratio
         nodes_conf_key_array = np.array(nodes_conf_key_list, dtype=object)
         nearby_nid_list = list(nodes_conf_key_array[candidate_mask])
@@ -999,7 +999,7 @@ class RRTStar(RRT):
                     return 'connection'
                 return nearby_min_cost_nid
 
-    # mehod override
+    # method override
     def plan(
             self,
             ext_dist=2,
@@ -1035,12 +1035,12 @@ class RRTStar(RRT):
             # annealing random sampling
             if annealing_rate is not None:
                 rand_rate_on = rand_rate - int(self.roadmap.number_of_nodes() * annealing_rate)
-                rand_rate_on = rand_rate_on if rand_rate > min_rand_rate else min_rand_rate
+                rand_rate_on = rand_rate_on if rand_rate_on > min_rand_rate else min_rand_rate
             rand_conf = self._sample_conf(
                 rand_rate=rand_rate_on,
                 default_conf=self.goal_conf)
 
-            # extend_roadmap_while_checking_collsiion
+            # extend_roadmap_while_checking_collision
             last_nid = self._extend_roadmap(
                 roadmap=self.roadmap,
                 conf=rand_conf,
@@ -1172,7 +1172,7 @@ class BiRRTStar(RRTStar):
                 return new_nid
         return nearest_nid
 
-    # mehod override
+    # method override
     def plan(
             self,
             ext_dist=2,

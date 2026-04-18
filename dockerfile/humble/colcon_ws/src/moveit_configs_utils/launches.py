@@ -169,7 +169,6 @@ def generate_warehouse_db_launch(moveit_config):
         package="warehouse_ros_mongo",
         executable="mongo_wrapper_ros.py",
         # TODO(dlu): Figure out if this needs to be run in a specific directory
-        # (ROS 1 version set cwd="ROS_HOME")
         parameters=db_parameters,
     )
     ld.add_action(db_node)
