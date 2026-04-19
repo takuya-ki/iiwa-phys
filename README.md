@@ -156,10 +156,10 @@
     ```  
     <img src=dataset/images/iiwa_gazebo.gif width=320>  
 
-## Contributors
+## Authors and Contributors
+
+- [Takuya Kiyokawa](https://takuya-ki.github.io/)
+- [Claude Code](https://claude.com/claude-code)
 
 We always welcome collaborators!
 
-## Author
-
-[Takuya Kiyokawa](https://takuya-ki.github.io/)  
