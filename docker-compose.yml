@@ -1,11 +1,11 @@
 services:
-    humble_ws:
+    jazzy_ws:
         build:
-            context: dockerfile/humble
+            context: dockerfile/jazzy
             args:
                 MAKEFLAGS: -j4
                 PARALLELWORKERS: 4
-        container_name: iiwa_phys_humble_container
+        container_name: iiwa_phys_jazzy_container
         runtime: nvidia
         environment:
             - NVIDIA_VISIBLE_DEVICES=all
@@ -33,4 +33,4 @@ services:
         privileged: true
         tty: true
         network_mode: host
-        command: bash -c "source /opt/ros/humble/setup.bash && cd /root/colcon_ws && colcon build --symlink-install --parallel-workers 1 && bash"
+        command: bash -c "source /opt/ros/jazzy/setup.bash && cd /root/colcon_ws && colcon build --symlink-install --parallel-workers 1 && bash"

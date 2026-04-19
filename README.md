@@ -31,10 +31,10 @@
 
 ## Dependency (tested as a host machine)
 
-- [Ubuntu 22.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=22.04+LTS)
-  - NVIDIA GeForce RTX 3090
-  - NVIDIA Driver 550.120
-    - CUDA v12.4
+- [Ubuntu 24.04 PC](https://ubuntu.com/certified/laptops?q=&limit=20&vendor=Dell&vendor=Lenovo&vendor=HP&release=24.04+LTS)
+  - NVIDIA GeForce RTX 3070
+  - NVIDIA Driver 535.288
+    - CUDA v12.2
   - Docker 27.4.1
   - Docker Compose 2.32.1
   - nvidia-container-runtime 1.17.5
@@ -48,7 +48,7 @@
 2. Download and install Isaac Gym Preview 4 from https://developer.nvidia.com/isaac-gym
 3. Unzip the file via  
     ```bash
-    tar -xf IsaacGym_Preview_4_Package.tar.gz -C pathto/iiwa-phys/dockerfile/humble
+    tar -xf IsaacGym_Preview_4_Package.tar.gz -C pathto/iiwa-phys/dockerfile/jazzy
     ```  
 4. Build the dockerfile
     ```bash
@@ -63,7 +63,7 @@
     ```  
 2. Execute the docker container
     ```bash
-    xhost + && docker exec -it iiwa_phys_humble_container bash
+    xhost + && docker exec -it iiwa_phys_jazzy_container bash
     ```  
 3. Run a command in the docker container
 
